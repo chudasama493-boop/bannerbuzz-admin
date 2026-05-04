@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order #AU2240186 - Admin</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: #333; background: #f5f5f5; }
+
+  /* Top Header */
+  .page-header {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .page-header h1 { font-size: 22px; font-weight: 600; color: #1a1a1a; }
+  .header-user { font-size: 13px; color: #555; display: flex; align-items: center; gap: 5px; }
+  .header-user::before { content: '👤'; }
+
+  /* Action Bar */
+  .action-bar {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 18px;
+    align-items: center;
+  }
+  .action-bar a {
+    color: #444; text-decoration: none; font-size: 13px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .action-bar a:hover { color: #000; }
+  .action-bar a.back::before { content: '← '; }
+
+  /* Alert */
+  .alert-info {
+    background: #fffde7;
+    border: 1px solid #f0e060;
+    padding: 10px 20px;
+    margin: 10px 20px;
+    border-radius: 3px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .alert-info a { color: #1565c0; }
+
+  /* Main Content */
+  .content { padding: 0 20px 30px; }
+
+  /* Section card */
+  .section-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+
+  /* Tabs */
+  .tab-container { background: #fff; border: 1px solid #ddd; border-radius: 3px; margin-bottom: 20px; }
+  .tab-header { padding: 12px 0 0 0; border-bottom: 1px solid #ddd; }
+  .tab-header h3 { padding: 0 16px 10px; font-size: 14px; font-weight: 600; color: #333; }
+  .tabs { display: flex; flex-wrap: wrap; padding: 0 12px; gap: 0; }
+  .tab {
+    padding: 8px 14px; cursor: pointer; font-size: 12.5px; color: #555;
+    border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.15s;
+  }
+  .tab:hover { color: #333; }
+  .tab.active { color: #c0392b; border-bottom: 2px solid #c0392b; font-weight: 500; }
+  .tab-row2 { display: flex; flex-wrap: wrap; padding: 0 12px 8px; }
+  .tab-row2 .tab { padding: 6px 14px; }
+
+  /* Section title */
+  .section-title {
+    font-size: 15px; font-weight: 600; color: #222;
+    padding: 14px 16px 10px; border-bottom: 1px solid #eee;
+  }
+  .subsection-title {
+    font-size: 13px; font-weight: 600; color: #222;
+    padding: 12px 16px 8px;
+  }
+
+  /* Info Grid */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .info-col { padding: 12px 16px; }
+  .info-col h4 { font-size: 13px; font-weight: 600; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 6px; }
+
+  .info-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 0; border-bottom: 1px solid #f0f0f0;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { color: #555; font-size: 12.5px; }
+  .info-value { color: #333; font-size: 12.5px; text-align: right; max-width: 60%; }
+  .info-value.link { color: #1565c0; }
+  .info-value.status-packed { background: #fff; color: #333; }
+  .info-row-bg { background: #f9f9f9; padding: 5px 8px; border-radius: 2px; }
+
+  /* Alternating rows */
+  .data-table { width: 100%; border-collapse: collapse; }
+  .data-table th {
+    background: #555; color: #fff; font-size: 12px; font-weight: 500;
+    padding: 8px 10px; text-align: left; border-right: 1px solid #666;
+  }
+  .data-table td {
+    padding: 8px 10px; border-bottom: 1px solid #e8e8e8;
+    font-size: 12.5px; vertical-align: top;
+  }
+  .data-table tr:nth-child(even) td { background: #f9f9f9; }
+  .data-table tr:hover td { background: #f0f5ff; }
+
+  /* Buttons */
+  .btn {
+    display: inline-block; padding: 6px 14px; border: none; border-radius: 3px;
+    cursor: pointer; font-size: 12.5px; font-weight: 500; text-decoration: none;
+  }
+  .btn-dark { background: #555; color: #fff; }
+  .btn-dark:hover { background: #444; }
+  .btn-primary { background: #1565c0; color: #fff; }
+  .btn-primary:hover { background: #1050a0; }
+  .btn-sm { padding: 4px 10px; font-size: 12px; }
+  .btn-outline { background: #fff; border: 1px solid #bbb; color: #333; }
+  .btn-outline:hover { background: #f5f5f5; }
+
+  /* Payment status badge */
+  .badge-success { background: #4caf50; color: #fff; padding: 3px 10px; border-radius: 12px; font-size: 11.5px; }
+  .badge-normal { background: #4caf50; color: #fff; padding: 2px 7px; border-radius: 50%; font-size: 11px; margin-right: 4px; }
+
+  /* Product link */
+  .product-link { color: #c0392b; text-decoration: none; font-weight: 500; }
+  .product-link:hover { text-decoration: underline; }
+  .sku { color: #666; font-size: 11.5px; margin-top: 2px; }
+  .cmyk-badge { display: inline-block; padding: 2px 8px; font-weight: 700; font-size: 13px; background: #fff; border: 1px solid #ddd; margin: 4px 0; }
+  .download-link { color: #f5a623; text-decoration: none; font-size: 12px; font-weight: 500; }
+  .artwork-thumb { width: 50px; height: 50px; object-fit: cover; background: #222; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 9px; border: 1px solid #ccc; }
+  .spec-line { font-size: 12px; color: #444; margin: 2px 0; }
+  .spec-line strong { color: #1565c0; text-decoration: none; }
+  .est-delivery { font-weight: 600; color: #333; }
+  .template-link { color: #c0392b; font-weight: 700; text-decoration: none; font-size: 12px; }
+
+  /* Vendor select */
+  .vendor-select-wrap { display: flex; align-items: center; gap: 2px; }
+  .vendor-select-wrap select { padding: 4px 6px; font-size: 12px; border: 1px solid #ccc; background: #555; color: #fff; cursor: pointer; }
+
+  /* Media select */
+  .media-select { padding: 5px 6px; font-size: 12px; border: 1px solid #ccc; width: 120px; }
+
+  /* Order total table */
+  .total-row { display: flex; justify-content: space-between; padding: 7px 12px; border-bottom: 1px solid #f0f0f0; }
+  .total-row.grand { font-weight: 700; font-size: 13.5px; padding-top: 10px; border-top: 2px solid #ddd; }
+
+  /* Form elements */
+  .form-input {
+    width: 100%; padding: 7px 10px; border: 1px solid #ccc; border-radius: 2px;
+    font-size: 13px; outline: none;
+  }
+  .form-input:focus { border-color: #1565c0; }
+  .form-select {
+    padding: 6px 10px; border: 1px solid #ccc; border-radius: 2px;
+    font-size: 13px; background: #fff; cursor: pointer; outline: none;
+  }
+  .form-select:focus { border-color: #1565c0; }
+
+  /* Customer history box */
+  .history-box {
+    border: 1px solid #ddd; border-radius: 3px; padding: 12px;
+    font-size: 12.5px;
+  }
+  .history-box .row { display: flex; gap: 10px; padding: 4px 0; }
+  .history-box .lbl { color: #555; min-width: 150px; }
+  .history-box .val { font-weight: 600; }
+  .history-box .val a { color: #1565c0; }
+
+  /* QNAP table */
+  .qnap-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  .qnap-table th { background: #555; color: #fff; padding: 7px 10px; font-size: 12px; text-align: left; }
+  .qnap-table td { padding: 8px 10px; border-bottom: 1px solid #eee; font-size: 12.5px; }
+
+  /* Internal comm */
+  .dept-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }
+
+  /* Comments history */
+  .status-row { display: grid; grid-template-columns: 240px 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; align-items: center; }
+
+  /* Order items in comments */
+  .comments-items-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+  .comments-items-table th { background: #555; color: #fff; padding: 7px 10px; font-size: 12px; text-align: left; }
+  .comments-items-table td { padding: 7px 10px; border-bottom: 1px solid #eee; font-size: 12.5px; }
+
+  /* Manage Carrier */
+  .carrier-table { width: 100%; border-collapse: collapse; }
+  .carrier-table th { background: #555; color: #fff; padding: 7px 10px; font-size: 12px; text-align: left; border-right: 1px solid #666; }
+  .carrier-table td { padding: 8px 10px; border-bottom: 1px solid #eee; vertical-align: middle; }
+  .carrier-table input[type=text] { width: 100%; padding: 5px 8px; border: 1px solid #ccc; border-radius: 2px; font-size: 12px; background: #f5f5f5; color: #888; }
+
+  /* Rich text editor */
+  .rte-toolbar {
+    border: 1px solid #ccc; border-bottom: none; background: #f9f9f9;
+    padding: 5px 8px; display: flex; gap: 4px; align-items: center; flex-wrap: wrap;
+  }
+  .rte-btn { padding: 3px 7px; border: 1px solid #ccc; background: #fff; cursor: pointer; font-size: 12px; border-radius: 2px; }
+  .rte-btn:hover { background: #e8e8e8; }
+  .rte-select { padding: 3px 6px; border: 1px solid #ccc; font-size: 12px; background: #fff; }
+  .rte-body { border: 1px solid #ccc; min-height: 120px; padding: 8px; background: #fff; outline: none; font-size: 13px; }
+
+  /* Order History table */
+  .history-table { width: 100%; border-collapse: collapse; }
+  .history-table th { background: #555; color: #fff; padding: 8px 10px; font-size: 12px; text-align: left; border-right: 1px solid #666; }
+  .history-table td { padding: 10px; border-bottom: 1px solid #eee; font-size: 12px; vertical-align: top; }
+  .history-table tr:nth-child(even) td { background: #fafafa; }
+
+  .status-packed { color: #333; }
+  .status-inprod { color: #333; }
+  .check-icon { color: #4caf50; }
+  .cross-icon { color: #e53935; }
+
+  /* Box data table */
+  .box-data { border-collapse: collapse; font-size: 12px; }
+  .box-data th { background: #555; color: #fff; padding: 5px 8px; border: 1px solid #666; }
+  .box-data td { padding: 5px 8px; border: 1px solid #ddd; }
+
+  /* Dropdown overlay */
+  .dropdown-wrapper { position: relative; display: inline-block; }
+  .dropdown-menu {
+    display: none; position: absolute; top: 100%; left: 0; z-index: 999;
+    background: #fff; border: 1px solid #ccc; min-width: 220px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-height: 300px; overflow-y: auto;
+  }
+  .dropdown-menu.open { display: block; }
+  .dropdown-item { padding: 7px 14px; cursor: pointer; font-size: 13px; color: #333; }
+  .dropdown-item:hover, .dropdown-item.selected { background: #1565c0; color: #fff; }
+
+  /* Proof / escalation */
+  .proof-row { display: flex; gap: 30px; }
+  .proof-col h5 { color: #c0392b; font-size: 13px; margin-bottom: 8px; }
+
+  /* File share buttons */
+  .items-actions { display: flex; gap: 6px; justify-content: flex-end; margin-bottom: 8px; }
+
+  /* Notice box */
+  .notice-box {
+    background: #ffeb3b; color: #333; padding: 8px 14px;
+    font-size: 12.5px; font-weight: 500; border-radius: 2px; display: inline-block;
+  }
+
+  /* Deviation badge */
+  .deviation-no { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 12px; font-weight: 600; }
+
+  /* Divider */
+  .divider { border: none; border-top: 1px solid #eee; margin: 12px 0; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .full-width { grid-column: 1 / -1; }
+
+  /* Checkboxes row */
+  .check-row { display: flex; align-items: center; gap: 6px; margin: 6px 0; font-size: 12.5px; }
+
+  /* View in Stripe */
+  .stripe-link { color: #1565c0; text-decoration: none; }
+  .stripe-link:hover { text-decoration: underline; }
+
+  /* Upload Artwork btn */
+  .btn-upload { background: #fff; border: 1px solid #bbb; color: #333; padding: 5px 12px; font-size: 12px; cursor: pointer; border-radius: 2px; }
+  .btn-upload:hover { background: #f5f5f5; }
+
+  .upload-table { width: 100%; border-collapse: collapse; }
+  .upload-table th { background: #555; color: #fff; padding: 7px 10px; font-size: 12px; text-align: left; }
+  .upload-table td { padding: 9px 10px; border-bottom: 1px solid #eee; font-size: 12.5px; }
+
+  .new-badge { background: #1565c0; color: #fff; padding: 2px 8px; border-radius: 2px; font-size: 11px; font-weight: 600; }
+
+  @media (max-width: 768px) {
+    .info-grid, .two-col { grid-template-columns: 1fr; }
+    .status-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Page Header -->
+<div class="page-header">
+  <h1>#AU2240186</h1>
+  <div class="header-user">QPEx_Vishal_3301 ▾</div>
+</div>
+
+<!-- Action Bar -->
+<div class="action-bar">
+  <a href="#" class="back">Back</a>
+  <a href="#">Send Email</a>
+  <a href="#">Credit Memo</a>
+  <a href="#">Ship</a>
+</div>
+
+<!-- Alert -->
+<div class="alert-info">
+  ℹ️ It's time to <a href="#">change your password.</a>
+</div>
+
+<div class="content">
+
+  <!-- Tabs -->
+  <div class="tab-container">
+    <div class="tab-header">
+      <h3>ORDER VIEW</h3>
+      <div class="tabs">
+        <span class="tab active" onclick="switchTab(this)">Information</span>
+        <span class="tab" onclick="switchTab(this)">Invoices</span>
+        <span class="tab" onclick="switchTab(this)">Credit Memos</span>
+        <span class="tab" onclick="switchTab(this)">Shipments</span>
+        <span class="tab" onclick="switchTab(this)">Comments History</span>
+        <span class="tab" onclick="switchTab(this)">Transactions</span>
+        <span class="tab" onclick="switchTab(this)">Update Log</span>
+        <span class="tab" onclick="switchTab(this)">Enhance Image</span>
+        <span class="tab" onclick="switchTab(this)">Refund/Reship History</span>
+        <span class="tab" onclick="switchTab(this)">CRM Tickets</span>
+        <span class="tab" onclick="switchTab(this)">Generate Payment Link</span>
+      </div>
+      <div class="tab-row2">
+        <span class="tab" onclick="switchTab(this)">Weight Based Shipping</span>
+        <span class="tab" onclick="switchTab(this)">History of Changes</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order & Account Information -->
+  <div class="section-card">
+    <div class="section-title">Order &amp; Account Information</div>
+    <div class="info-grid">
+      <div class="info-col">
+        <h4>Order # AU397464001777742208 (The order confirmation email was sent)</h4>
+        <div class="info-row info-row-bg"><span class="info-label">Order Date</span><span class="info-value">May 2, 2026, 10:47:01 PM</span></div>
+        <div class="info-row"><span class="info-label">Order Date (Australia/Sydney)</span><span class="info-value">May 3, 2026, 3:17:01 AM</span></div>
+        <div class="info-row info-row-bg"><span class="info-label">Order Status</span><span class="info-value">Packed</span></div>
+        <div class="info-row"><span class="info-label">Purchased From</span><span class="info-value" style="text-align:right">AU Website<br>AU Store<br>bannerbuzz.com.au</span></div>
+        <div class="info-row info-row-bg"><span class="info-label">Placed from IP</span><span class="info-value">101.173.213.50 (101.173.213.50, 23.235.44.22, 104.156.83.126) 🗑️</span></div>
+        <div class="info-row"><span class="info-label">Browser</span><span class="info-value">Safari</span></div>
+        <div class="info-row info-row-bg"><span class="info-label">Screen Resolution</span><span class="info-value">414 x 896</span></div>
+        <div class="info-row"><span class="info-label">Device</span><span class="info-value">Mobile</span></div>
+        <div class="info-row info-row-bg"><span class="info-label">USD / AUD rate:</span><span class="info-value">0.7500</span></div>
+      </div>
+      <div class="info-col">
+        <h4>Account Information</h4>
+        <div class="info-row info-row-bg"><span class="info-label">Customer Name</span><span class="info-value">Ali Hussain</span></div>
+        <div class="info-row"><span class="info-label">Email</span><span class="info-value link">ali.alibadi11@gmail.com</span></div>
+        <div class="info-row info-row-bg"><span class="info-label">Customer Group</span><span class="info-value">General</span></div>
+        <div class="info-row"><span class="info-label">Recency Score</span><span class="info-value">0</span></div>
+        <div class="info-row info-row-bg"><span class="info-label">Frequency Score</span><span class="info-value">0</span></div>
+        <div class="info-row"><span class="info-label">Monetary Score</span><span class="info-value">0</span></div>
+        <div class="info-row info-row-bg"><span class="info-label">RFM Score</span><span class="info-value">0</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Address Information -->
+  <div class="section-card">
+    <div class="section-title">Address Information</div>
+    <div class="info-grid">
+      <div class="info-col">
+        <h4>Billing Address</h4>
+        <p style="font-size:13px;line-height:1.8">
+          Ali Hussain<br>
+          W.s trading card game pty ltd<br>
+          85 Springs Road<br>
+          Spring farm, New South Wales, 2570<br>
+          Australia<br>
+          T: 0451067711
+        </p>
+      </div>
+      <div class="info-col">
+        <h4>Shipping Address</h4>
+        <p style="font-size:13px;line-height:1.8">
+          Ali Hussain<br>
+          W.s trading card game pty ltd<br>
+          85 Springs Road<br>
+          Spring farm, New South Wales, 2570<br>
+          Australia<br>
+          T: 0451067711
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment & Shipping -->
+  <div class="section-card">
+    <div class="section-title">Payment &amp; Shipping Method</div>
+    <div class="info-grid">
+      <div class="info-col">
+        <h4>Payment Information</h4>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <strong style="font-size:13px">Stripe - Credit Card</strong>
+          <span style="background:linear-gradient(135deg,#eb001b,#f79e1b);border-radius:3px;padding:2px 8px;color:#fff;font-size:11px">MC</span>
+          <span style="font-size:13px">**** **** **** 7881</span>
+        </div>
+        <div class="info-row info-row-bg"><span class="info-label">Payment status</span><span class="info-value"><span class="badge-success">Succeeded ✓</span></span></div>
+        <div class="info-row"><span class="info-label">Risk evaluation</span><span class="info-value"><span class="badge-normal">8</span> Normal</span></div>
+        <div class="info-row info-row-bg"><span class="info-label">Payment</span><span class="info-value"><a href="#" class="stripe-link">View in Stripe</a></span></div>
+        <p style="font-size:12px;color:#666;margin-top:10px">The order was placed using AUD.</p>
+        <div class="check-row"><input type="checkbox"> Drop Ship</div>
+        <div style="margin-top:8px">
+          <strong style="font-size:12.5px">Ship with Order No:</strong>
+          <input type="text" class="form-input" style="margin-top:5px;" placeholder="e.g.(US147193672586)">
+          <button class="btn btn-dark btn-sm" style="margin-top:6px">Submit</button>
+        </div>
+      </div>
+      <div class="info-col">
+        <h4>Shipping Information</h4>
+        <p style="font-size:13px">Estimated delivery Mon, May 11th 2026 - Priority $34.19</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Items Ordered -->
+  <div class="section-card">
+    <div style="padding:12px 16px 8px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee">
+      <strong style="font-size:15px">Items Ordered</strong>
+      <div class="items-actions">
+        <button class="btn btn-dark btn-sm">File Share</button>
+        <button class="btn btn-dark btn-sm">Process Artwork</button>
+        <button class="btn btn-dark btn-sm">Export Order CSV</button>
+      </div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Sr No</th>
+            <th>Item Id</th>
+            <th>Product</th>
+            <th>Vendor Name</th>
+            <th>Size (MM)</th>
+            <th>Media</th>
+            <th>Qty</th>
+            <th>Subtotal</th>
+            <th>Tax Amount</th>
+            <th>Tax Percent</th>
+            <th>Shipping Amount</th>
+            <th>Edit Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td style="color:#1565c0">AU2240186_1</td>
+            <td>
+              <a href="#" class="product-link">Premium Full Colour Table Covers &amp; Throws</a>
+              <div class="sku">SKU: BBCTCT01</div>
+              <div style="margin:6px 0">
+                <span style="font-weight:900;letter-spacing:1px;font-size:13px;color:#333">C</span><span style="color:#00b0f0;font-weight:900;font-size:13px">M</span><span style="color:#ffff00;background:#888;font-weight:900;font-size:13px">Y</span><span style="font-weight:900;font-size:13px">K</span>
+              </div>
+              <a href="#" class="download-link">Download</a>
+              <div style="margin-top:8px;font-size:12px;color:#555">Artwork Side: Front</div>
+              <div style="margin:4px 0">
+                <div style="width:50px;height:50px;background:#1a1a2e;display:flex;align-items:center;justify-content:center;border:1px solid #ccc">
+                  <span style="color:#fff;font-size:9px;text-align:center">artwork</span>
+                </div>
+                <button class="btn btn-outline btn-sm" style="margin-top:4px;font-size:11px">Download</button>
+              </div>
+              <div class="spec-line">Page Type : Upload Your Artwork Order</div>
+              <div class="spec-line">Size (W X H) : 180 cm x 80 cm (CM) | $137.51</div>
+              <div class="spec-line">Choose Side Style : Closed Back | $68.62</div>
+              <div class="spec-line">Select Fabric Material: Standard Polyester Fabric</div>
+              <div class="spec-line">Select Edge Finish : Hot Knife Cut Edges</div>
+              <div class="spec-line">Standard Color: Black</div>
+              <div class="spec-line est-delivery">Estimated delivery Mon, May 11th 2026</div>
+              <a href="#" class="template-link">Download Template</a>
+            </td>
+            <td>
+              <div class="vendor-select-wrap">
+                <select style="background:#555;color:#fff;border:none;padding:5px 8px;font-size:12px">
+                  <option>BannerBu</option>
+                  <option>Vendor 2</option>
+                </select>
+                <span style="background:#555;color:#fff;padding:5px 6px;cursor:pointer;font-size:11px">▾</span>
+              </div>
+            </td>
+            <td style="white-space:nowrap">1828.8 x 762(w x h)</td>
+            <td>
+              <div style="margin-bottom:6px"><strong>Machine :</strong></div>
+              <select class="media-select">
+                <option>Select Ma...</option>
+                <option>Machine 1</option>
+                <option>Machine 2</option>
+              </select>
+              <div style="margin:6px 0"><strong>Roll :</strong></div>
+              <select class="media-select">
+                <option>Select Rol...</option>
+                <option>Roll 1</option>
+                <option>Roll 2</option>
+              </select>
+              <div style="margin-top:6px"><strong>Media : POLYESTER FABRIC</strong></div>
+            </td>
+            <td>Ordered 1<br>Invoiced 1</td>
+            <td>$206.13</td>
+            <td>$20.61</td>
+            <td>10%</td>
+            <td>$34.19</td>
+            <td><button class="btn btn-outline btn-sm">Edit</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Order Total -->
+  <div class="section-card">
+    <div class="section-title">Order Total</div>
+    <div class="two-col">
+      <div style="padding:12px 16px">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:12px">Apply Discount</h4>
+        <a href="#" style="color:#1565c0;font-size:12.5px">Available Discount Offers</a>
+        <div style="margin-top:10px">
+          <label style="font-size:12.5px;font-weight:500;display:block;margin-bottom:4px">Discount Amount</label>
+          <input type="text" class="form-input" style="width:100%;max-width:360px">
+          <p style="font-size:11.5px;color:#666;margin-top:4px">Note : Please enter a positive amount without (-) sign.</p>
+        </div>
+        <div style="margin-top:10px">
+          <label style="font-size:12.5px;font-weight:500;display:block;margin-bottom:4px">Discount Type</label>
+          <select class="form-select">
+            <option>By Percentage</option>
+            <option>Fixed Amount</option>
+          </select>
+        </div>
+        <div style="margin-top:10px">
+          <label style="font-size:12.5px;font-weight:500;display:block;margin-bottom:4px">Your Comments</label>
+          <textarea class="form-input" rows="3" style="resize:vertical"></textarea>
+        </div>
+        <button class="btn btn-dark" style="margin-top:10px">Apply Discount</button>
+        <hr class="divider">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin:10px 0">
+          <div>
+            <strong style="font-size:13px">Redeem Store Credit</strong>
+            <button class="btn btn-outline btn-sm" style="margin-left:10px">Apply Store Credit</button>
+          </div>
+          <span>$0.00</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:8px">
+          <strong style="font-size:13px">Remove Tax From Order</strong>
+          <button class="btn btn-dark btn-sm">Apply Remove Tax</button>
+        </div>
+      </div>
+      <div style="padding:12px 16px">
+        <h4 style="font-size:14px;font-weight:600;margin-bottom:12px">Order Totals</h4>
+        <div class="total-row"><span>Subtotal</span><span>$206.13</span></div>
+        <div class="total-row"><span>Handling Charges</span><span>$0.00</span></div>
+        <div class="total-row"><span>Wallet Amount</span><span>$0.00</span></div>
+        <div class="total-row"><span>Shipping</span><span>$34.19</span></div>
+        <div class="total-row"><span>Discount</span><span>$0.00</span></div>
+        <div class="total-row"><span>Total Tax</span><span>$24.03</span></div>
+        <div class="total-row grand"><span>Grand Total</span><span>$264.35</span></div>
+        <div class="total-row" style="font-weight:600;padding-top:6px"><span>Total Paid</span><span>$264.35</span></div>
+        <div class="total-row"><span>Total Refunded</span><span>$0.00</span></div>
+        <div class="total-row"><span>Total Due</span><span>$0.00</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Customer History & Proof Request -->
+  <div class="section-card">
+    <div class="section-title">Customer History &amp; Proof Request</div>
+    <div class="two-col" style="padding:12px 16px;gap:30px">
+      <div>
+        <div class="history-box">
+          <div class="row"><span class="lbl">Customer's Total Orders :</span><span class="val">1</span></div>
+          <div class="row"><span class="lbl">Total Revenue From Customer :</span><span class="val">$264.35</span></div>
+          <div class="row"><span class="lbl">Customer CellPhone :</span><span class="val">0451067711</span></div>
+          <div class="row"><span class="lbl">SMS CellPhone :</span><span class="val">0451067711 <a href="#">Edit</a></span></div>
+        </div>
+      </div>
+      <div>
+        <div style="display:flex;gap:20px">
+          <div>
+            <div style="margin-bottom:8px"><strong style="font-size:12.5px">Customer Comments Count :</strong> 1</div>
+          </div>
+        </div>
+        <div class="proof-row" style="gap:40px">
+          <div>
+            <h5>Proof Request:</h5>
+            <div style="margin-bottom:6px;font-size:12.5px">Customer Proof Required: No</div>
+            <div class="check-row"><input type="checkbox" checked disabled> <label>Proof Request</label></div>
+            <textarea class="form-input" rows="2" style="font-size:12px;margin-top:6px">pr</textarea>
+            <button class="btn btn-outline btn-sm" style="margin-top:6px">Edit</button>
+          </div>
+          <div>
+            <h5>Escalation:</h5>
+            <div class="check-row"><input type="checkbox"> <label>Escalation</label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QNAP Folder Path -->
+  <div class="section-card">
+    <div class="section-title">QNAP Folder Path</div>
+    <div style="padding:12px 16px">
+      <div style="display:flex;gap:8px;margin-bottom:12px">
+        <input type="text" class="form-input" style="max-width:340px">
+        <button class="btn btn-dark">Update</button>
+      </div>
+      <table class="qnap-table">
+        <thead>
+          <tr>
+            <th>Date Added</th>
+            <th>User</th>
+            <th>Path</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>May 03, 2026, 03:25:49 AM (Australia/Sydney) | (May 02, 2026, 10:55:49 PM IST)</td>
+            <td>DPO_Manish_3882</td>
+            <td>
+              ProcessArtworkViaCloud
+              <button class="btn btn-outline btn-sm" style="margin-left:8px">Copy</button>
+              <span class="new-badge">New</span>
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Internal Communication -->
+  <div class="section-card">
+    <div class="section-title">Internal Communication</div>
+    <div style="padding:12px 16px">
+      <div class="dept-row">
+        <div>
+          <label style="font-size:12.5px;font-weight:500;display:block;margin-bottom:4px">Select Department</label>
+          <select class="form-select" style="width:160px">
+            <option></option>
+            <option>Design</option>
+            <option>Production</option>
+            <option>Logistics</option>
+            <option>Customer Service</option>
+          </select>
+        </div>
+        <div style="flex:1">
+          <label style="font-size:12.5px;font-weight:500;display:block;margin-bottom:4px">Add Comment</label>
+          <div style="display:flex;gap:8px">
+            <input type="text" class="form-input" placeholder="Enter comment...">
+            <button class="btn btn-dark">Submit</button>
+          </div>
+        </div>
+      </div>
+      <table class="qnap-table" style="margin-top:10px">
+        <thead>
+          <tr><th>Added Date</th><th>User</th><th>Department</th><th>Comment</th></tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="4" style="color:#888;font-size:12px;padding:12px">No Records Found</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Share Meeting Link -->
+  <div class="section-card">
+    <div style="padding:12px 16px">
+      <h4 style="font-size:14px;font-weight:600;margin-bottom:10px">Share Meeting Link</h4>
+      <div style="display:flex;gap:8px;margin-bottom:10px">
+        <input type="text" class="form-input" style="max-width:340px">
+        <button class="btn btn-dark">Email Link</button>
+      </div>
+      <table class="qnap-table">
+        <thead>
+          <tr><th>Date Added</th><th>User</th><th>Meeting Link</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="4" style="color:#888;font-size:12px;padding:12px">No Records Found</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Comments History -->
+  <div class="section-card">
+    <div class="section-title">Comments History</div>
+    <div style="padding:12px 16px">
+      <h4 style="font-size:14px;font-weight:600;margin-bottom:12px">Add Order Comments</h4>
+      
+      <div style="display:grid;grid-template-columns:280px 1fr 1fr 1fr;gap:10px;align-items:end;margin-bottom:10px;flex-wrap:wrap">
+        <div>
+          <label style="font-size:12px;font-weight:500;display:block;margin-bottom:4px">Status</label>
+          <div class="dropdown-wrapper" style="display:block">
+            <div onclick="toggleDropdown('status-dd')" style="display:flex;align-items:center;border:1px solid #ccc;background:#fff;cursor:pointer;padding:6px 10px;font-size:13px;justify-content:space-between;min-width:240px">
+              <span id="status-val">Packed</span>
+              <span>▾</span>
+            </div>
+            <div class="dropdown-menu" id="status-dd">
+              <div class="dropdown-item" onclick="selectStatus(this)">Artwork Approved</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Artwork Approved (LR)</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">B2B Hold</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Bank Side Confirmation Pending</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Canceled</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Chargeback</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Checked</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Closed</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Complete</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">CS Hold</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Customer Comments</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Delivered</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Design Hold</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Design Review</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Designer Comment</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Dispute</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Escalated - CS</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Escalated - Design</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Escalated - Prod/Log</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Escalation</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">File Required</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">In Production</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Logistics Hold</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Low Resolution File</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Marketplace Order</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Order Charged</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Out Of Stock</div>
+              <div class="dropdown-item selected" onclick="selectStatus(this)">Packed</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Processing</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Refund Initiated</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Reshipped</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">Shipped</div>
+              <div class="dropdown-item" onclick="selectStatus(this)">V - Production</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:500;display:block;margin-bottom:4px">Email</label>
+          <input type="text" class="form-input" placeholder="email">
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:500;display:block;margin-bottom:4px">Canned Response</label>
+          <div class="dropdown-wrapper" style="display:block">
+            <div onclick="toggleDropdown('canned-dd1')" style="display:flex;align-items:center;border:1px solid #ccc;background:#fff;cursor:pointer;padding:6px 10px;font-size:13px;justify-content:space-between;min-width:180px">
+              <span id="canned-val1">Please select</span>
+              <span>▾</span>
+            </div>
+            <div class="dropdown-menu" id="canned-dd1">
+              <div class="dropdown-item selected" onclick="selectCanned1(this)">Please select</div>
+              <div class="dropdown-item" onclick="selectCanned1(this)">Artwork Approved</div>
+              <div class="dropdown-item" onclick="selectCanned1(this)">Artwork Approved (LR)</div>
+              <div class="dropdown-item" onclick="selectCanned1(this)">Design Review</div>
+              <div class="dropdown-item" onclick="selectCanned1(this)">Chargeback</div>
+              <div class="dropdown-item" onclick="selectCanned1(this)">Closed</div>
+              <div class="dropdown-item" onclick="selectCanned1(this)">Design Hold</div>
+              <div class="dropdown-item" onclick="selectCanned1(this)">Escalation</div>
+              <div class="dropdown-item" onclick="selectCanned1(this)">File Required</div>
+              <div class="dropdown-item" onclick="selectCanned1(this)">Logistics Hold</div>
+              <div class="dropdown-item" onclick="selectCanned1(this)">Low Resolution File</div>
+              <div class="dropdown-item" onclick="selectCanned1(this)">Marketplace Order</div>
+              <div class="dropdown-item" onclick="selectCanned1(this)">Order Charged</div>
+              <div class="dropdown-item" onclick="selectCanned1(this)">Out Of Stock</div>
+              <div class="dropdown-item" onclick="selectCanned1(this)">Packed</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:500;display:block;margin-bottom:4px">&nbsp;</label>
+          <div class="dropdown-wrapper" style="display:block">
+            <div onclick="toggleDropdown('canned-dd2')" style="display:flex;align-items:center;border:1px solid #ccc;background:#fff;cursor:pointer;padding:6px 10px;font-size:13px;justify-content:space-between;min-width:180px">
+              <span id="canned-val2">Please Select</span>
+              <span>▾</span>
+            </div>
+            <div class="dropdown-menu" id="canned-dd2">
+              <div class="dropdown-item selected" onclick="selectCanned2(this)">Please Select</div>
+              <div class="dropdown-item" onclick="selectCanned2(this)">English</div>
+              <div class="dropdown-item" onclick="selectCanned2(this)">Artwork Concern</div>
+              <div class="dropdown-item" onclick="selectCanned2(this)">Shipping Update</div>
+              <div class="dropdown-item" onclick="selectCanned2(this)">Order Confirmation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Items table in comments -->
+      <table class="comments-items-table">
+        <thead>
+          <tr>
+            <th>Sr.No</th>
+            <th>Number</th>
+            <th>Product Name</th>
+            <th>Qty</th>
+            <th>Unit Sq. Ft</th>
+            <th>Total Sq.Ft</th>
+            <th>Main Stock Item</th>
+            <th>Main Stock Sub Item</th>
+            <th>Hardware Material</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>AU2240186_1</td>
+            <td>Premium Full Colour Table Covers &amp; Throws (182.88x76.2) (cm)</td>
+            <td>1</td>
+            <td>53</td>
+            <td>53</td>
+            <td>Printed Fabric Banner</td>
+            <td>Printed Fabric ST135</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Manage Carrier -->
+      <div style="background:#555;color:#fff;padding:10px 14px;margin-bottom:10px;border-radius:2px">
+        <strong>Manage Carrier</strong>
+        <div><span class="notice-box" style="margin-top:8px;display:inline-block">Please Include Catalog (add catalog weight manually for particular box.)</span></div>
+        <div style="display:flex;justify-content:flex-end;gap:8px;margin-bottom:8px;margin-top:8px">
+          <button class="btn btn-outline btn-sm">Rearrange Box</button>
+          <button class="btn btn-outline btn-sm">Add Box</button>
+        </div>
+        <table class="carrier-table" style="background:#fff;color:#333">
+          <thead>
+            <tr>
+              <th rowspan="2" style="background:#555;color:#fff"></th>
+              <th rowspan="2" style="background:#555;color:#fff"></th>
+              <th rowspan="2" style="background:#555;color:#fff">PCs</th>
+              <th rowspan="2" style="background:#555;color:#fff">SQRT</th>
+              <th rowspan="2" style="background:#555;color:#fff">GW (KG)</th>
+              <th rowspan="2" style="background:#555;color:#fff">NW (KG)</th>
+              <th colspan="3" style="background:#555;color:#fff">Dimension Weight (in CM)</th>
+            </tr>
+            <tr>
+              <th style="background:#666;color:#fff">Length</th>
+              <th style="background:#666;color:#fff">Breadth</th>
+              <th style="background:#666;color:#fff">Height</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Box 1 *</td>
+              <td><a href="#" style="color:#1565c0;font-size:12px">Select Product</a></td>
+              <td><input type="text" value="1" style="width:60px;padding:4px;border:1px solid #ccc;border-radius:2px;background:#f5f5f5;color:#888"></td>
+              <td><input type="text" value="53" style="width:60px;padding:4px;border:1px solid #ccc;border-radius:2px;background:#f5f5f5;color:#888"></td>
+              <td><input type="text" value="1.65" style="width:70px;padding:4px;border:1px solid #ccc;border-radius:2px;background:#f5f5f5;color:#888"></td>
+              <td><input type="text" value="1.6" style="width:70px;padding:4px;border:1px solid #ccc;border-radius:2px;background:#f5f5f5;color:#888"></td>
+              <td><input type="text" value="30" style="width:60px;padding:4px;border:1px solid #ccc;border-radius:2px;background:#f5f5f5;color:#888"></td>
+              <td><input type="text" value="30" style="width:60px;padding:4px;border:1px solid #ccc;border-radius:2px;background:#f5f5f5;color:#888"></td>
+              <td><input type="text" value="2" style="width:60px;padding:4px;border:1px solid #ccc;border-radius:2px;background:#f5f5f5;color:#888"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Rich Text Editor (Comment) -->
+      <div style="margin-bottom:10px">
+        <label style="font-size:12.5px;font-weight:500;display:block;margin-bottom:6px">Comment:</label>
+        <div class="rte-toolbar">
+          <button class="rte-btn">↩</button>
+          <button class="rte-btn">↪</button>
+          <select class="rte-select">
+            <option>Arial</option>
+            <option>Times New Roman</option>
+            <option>Georgia</option>
+          </select>
+          <select class="rte-select">
+            <option>10pt</option>
+            <option>12pt</option>
+            <option>14pt</option>
+          </select>
+          <button class="rte-btn"><strong>B</strong></button>
+          <button class="rte-btn"><em>I</em></button>
+          <button class="rte-btn"><u>U</u></button>
+          <button class="rte-btn">A</button>
+          <button class="rte-btn">🖊</button>
+          <button class="rte-btn">🔗</button>
+          <button class="rte-btn">🖼</button>
+          <button class="rte-btn">≡</button>
+          <button class="rte-btn">≡</button>
+          <button class="rte-btn">≡</button>
+          <button class="rte-btn">≡</button>
+          <button class="rte-btn">☰</button>
+          <button class="rte-btn">•</button>
+          <button class="rte-btn">1.</button>
+          <button class="rte-btn">⬅</button>
+          <button class="rte-btn">➡</button>
+          <button class="rte-btn"><em>T</em></button>
+        </div>
+        <div class="rte-body" contenteditable="true"></div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:#888;border:1px solid #ccc;border-top:none;padding:3px 8px;background:#f9f9f9">
+          <span>p</span>
+          <span>Powered by HugeRTE ✏️</span>
+        </div>
+      </div>
+
+      <!-- Internal Comment -->
+      <div style="margin-bottom:10px">
+        <label style="font-size:12.5px;font-weight:500;display:block;margin-bottom:6px">Internal Comment:</label>
+        <div class="rte-toolbar">
+          <button class="rte-btn">↩</button>
+          <button class="rte-btn">↪</button>
+          <select class="rte-select"><option>Arial</option></select>
+          <select class="rte-select"><option>10pt</option></select>
+          <button class="rte-btn"><strong>B</strong></button>
+          <button class="rte-btn"><em>I</em></button>
+          <button class="rte-btn"><u>U</u></button>
+        </div>
+        <div class="rte-body" contenteditable="true" style="min-height:80px"></div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:#888;border:1px solid #ccc;border-top:none;padding:3px 8px;background:#f9f9f9">
+          <span>p</span>
+          <span>Powered by HugeRTE ✏️</span>
+        </div>
+      </div>
+
+      <!-- Submit options -->
+      <div class="check-row"><input type="checkbox"> Notify Customer by Email</div>
+      <div class="check-row"><input type="checkbox"> Visible on Storefront</div>
+      <div class="check-row"><input type="checkbox" checked disabled> Payment Received</div>
+      <button class="btn btn-dark" style="margin-top:10px">Submit Comment</button>
+    </div>
+  </div>
+
+  <!-- Order History -->
+  <div class="section-card">
+    <div class="section-title">Order History</div>
+    <div style="overflow-x:auto">
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Date Added</th>
+            <th>User</th>
+            <th>Customer Notified</th>
+            <th>Status</th>
+            <th>Comments</th>
+            <th>Attachments</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>May 4, 2026, 3:43:48 AM (Australia/Sydney) | (May 03, 2026, 11:13:48 PM IST)</td>
+            <td>QC_FABRIC_TANVEER_LS-1084</td>
+            <td style="text-align:center"><span class="cross-icon">✗</span></td>
+            <td>Packed</td>
+            <td>
+              D PACK.
+              <div style="margin-top:6px">
+                <table class="box-data">
+                  <thead>
+                    <tr>
+                      <th></th><th>PCs</th><th>SQRT</th><th>GW (KG)</th><th>NW (KG)</th><th>LxBxH</th><th>DW</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="background:#ccc;padding:4px 8px">Box 1</td>
+                      <td>1</td><td>53.0000</td><td>1.65</td><td>1.60</td><td>30x30x2</td><td>0.36</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div style="margin-top:6px;font-size:12.5px"><strong>Deviation:</strong> <span class="deviation-no">No</span></div>
+            </td>
+            <td><a href="#" style="color:#1565c0;font-size:12px">Print Box Slip</a></td>
+          </tr>
+          <tr>
+            <td>May 3, 2026, 4:36:57 AM (Australia/Sydney) | (May 03, 2026, 12:06:57 AM IST)</td>
+            <td>DPO_Kandarp_3292</td>
+            <td style="text-align:center"><span class="cross-icon">✗</span></td>
+            <td>In Production</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>May 3, 2026, 4:36:57 AM (Australia/Sydney) | (May 03, 2026, 12:06:57 AM IST)</td>
+            <td>DPO_Kandarp_3292</td>
+            <td style="text-align:center"><span class="cross-icon">✗</span></td>
+            <td>V - Production</td>
+            <td></td>
+            <td><a href="#" style="color:#1565c0;font-size:12px">View</a></td>
+          </tr>
+          <tr>
+            <td>May 3, 2026, 4:08:01 AM (Australia/Sydney) | (May 02, 2026, 11:38:01 PM IST)</td>
+            <td>ali.alibadi11@gmail.com</td>
+            <td style="text-align:center"><span class="check-icon">✓</span> ali.alibadi11@gmail.com</td>
+            <td>Artwork Approved</td>
+            <td>
+              <p style="margin-bottom:6px">Dear Customer,</p>
+              <p><strong>Product ID - AU2240186_1 :</strong> We have a concern,</p>
+              <ul style="margin:6px 0 6px 18px;font-size:12px">
+                <li>Your artwork you provided appears slightly fuzzy but will look good from a distance. If you approve the quality, please confirm.</li>
+                <li>The artwork provided contains RGB colors, but we print in the CMYK color profile. Please note that there may be some color variations after printing.</li>
+              </ul>
+              <p style="font-size:12px">Kindly share your changes or confirmation in the comments once you've reviewed the proof.</p>
+              <p style="font-size:12px">Note: delays in the revert may affect shipping, as the delivery date depends on artwork approval.</p>
+              <p style="font-size:12px">Thank you.</p>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>May 3, 2026, 4:02:30 AM (Australia/Sydney) | (May 02, 2026, 11:32:30 PM IST)</td>
+            <td>DPO_Dev_3872<br><span style="color:#f5a623">Rating: 5 Star</span></td>
+            <td style="text-align:center"><span class="check-icon">✓</span> ali.alibadi11@gmail.com</td>
+            <td>Design Review</td>
+            <td>
+              <p style="margin-bottom:6px">Dear Customer,</p>
+              <p><strong>Product ID - AU2240186_1 :</strong> We have a concern,</p>
+              <ul style="margin:6px 0 6px 18px;font-size:12px">
+                <li>Your artwork you provided appears slightly fuzzy but will look good from a distance. If you approve the quality, please confirm.</li>
+                <li>The artwork provided contains RGB colors, but we print in the CMYK color profile. Please note that there may be some color variations after printing.</li>
+              </ul>
+              <p style="font-size:12px">Kindly share your changes or confirmation in the comments once you've reviewed the proof.</p>
+              <p style="font-size:12px">Note: delays in the revert may affect shipping.</p>
+              <p style="font-size:12px">Thank you.</p>
+            </td>
+            <td>
+              <a href="#" style="color:#1565c0;display:block;font-size:12px">View File</a>
+              <a href="#" style="color:#1565c0;display:block;font-size:12px">Download</a>
+            </td>
+          </tr>
+          <tr>
+            <td>May 3, 2026, 3:45:53 AM (Australia/Sydney) | (May 02, 2026, 11:15:53 PM IST)</td>
+            <td>ali.alibadi11@gmail.com</td>
+            <td style="text-align:center"><span class="check-icon">✓</span> ali.alibadi11@gmail.com</td>
+            <td>Customer Comments</td>
+            <td>click <a href="#" style="color:#1565c0">here</a> to view customer comments</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>May 3, 2026, 3:26:10 AM (Australia/Sydney) | (May 02, 2026, 10:56:10 PM IST)</td>
+            <td>DPO_Manish_3882</td>
+            <td style="text-align:center"><span class="check-icon">✓</span> ali.alibadi11@gmail.com</td>
+            <td>Designer Comment</td>
+            <td>
+              <p style="margin-bottom:6px">Dear Customer,</p>
+              <p><strong>Product ID-AU2240186_1:</strong></p>
+              <p>We have a concern,</p>
+              <ul style="margin:6px 0 6px 18px;font-size:12px">
+                <li>Your artwork appears slightly fuzzy but will look good from a 6-7 ft. distance. If you approve the quality, please confirm. Otherwise, provide new artwork in PDF, AI, EPS, SVG, PSD, JPEG, PNG, or TIFF formats.</li>
+                <li>The artwork provided contains RGB colors, but we print in the CMYK color profile. Please note that there may be some color variations after printing.</li>
+              </ul>
+              <p style="font-size:12px">Kindly share your changes or confirmation in the comments once you've reviewed the proof.</p>
+              <p style="font-size:12px">Note: delays in the revert may affect shipping.</p>
+              <p style="font-size:12px">Thank you.</p>
+            </td>
+            <td>
+              <a href="#" style="color:#1565c0;display:block;font-size:12px">View File</a>
+              <a href="#" style="color:#1565c0;display:block;font-size:12px">Download</a>
+            </td>
+          </tr>
+          <tr>
+            <td>May 3, 2026, 3:17:01 AM (Australia/Sydney) | (May 02, 2026, 10:47:01 PM IST)</td>
+            <td></td>
+            <td style="text-align:center"><span class="cross-icon">✗</span></td>
+            <td>Processing</td>
+            <td>Captured amount of $264.35 online. Transaction ID: "pi_3TSh9xFCoBu7w8Ln1cXNVzJU"</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- end content -->
+
+<script>
+function switchTab(el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function toggleDropdown(id) {
+  const allMenus = document.querySelectorAll('.dropdown-menu');
+  allMenus.forEach(m => {
+    if (m.id !== id) m.classList.remove('open');
+  });
+  document.getElementById(id).classList.toggle('open');
+}
+
+function selectStatus(el) {
+  document.getElementById('status-val').textContent = el.textContent;
+  document.querySelectorAll('#status-dd .dropdown-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('status-dd').classList.remove('open');
+}
+
+function selectCanned1(el) {
+  document.getElementById('canned-val1').textContent = el.textContent;
+  document.querySelectorAll('#canned-dd1 .dropdown-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('canned-dd1').classList.remove('open');
+}
+
+function selectCanned2(el) {
+  document.getElementById('canned-val2').textContent = el.textContent;
+  document.querySelectorAll('#canned-dd2 .dropdown-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('canned-dd2').classList.remove('open');
+}
+
+// Close dropdowns on outside click
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.dropdown-wrapper')) {
+    document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+  }
+});
+</script>
+</body>
+</html>
